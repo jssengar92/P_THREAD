@@ -1,0 +1,38 @@
+Thread are unit of execution within a process that can be schedule by OS scheduler which share the data and code segment 
+but have its own stack segment.
+In linux kernel. Thread is just a lightweighted process which share the memory address of the process 
+which creates it.
+
+In single-threaded processes, the process contains one thread.process is only thread so one thing going on at a time.
+In multi threaded processes, the process contains more than one thread—there’s more than one thing going on simultaneously.
+
+Benefits of Multi-threading?
+*Programming Abstraction:Dividing up the work and assign each unit of work to thread make working easy and manageable for user as well as OS gets relieve as context switch within the thread is easy.
+*Parallelism :threads provide an efficient way to achieve true parallelism. As each thread receives its own virtualized processor and is an independently-schedulable entity, multiple threads may run on multiple processors at the same time, improving a system’s throughput. Thus Providing BETTER UTILIZATION OF HARDWARE.
+*Memory Saving :Threads provide an efficient way to share memory yet utilize multiple units of execution.
+*Enhanced performance on multi-processor machines
+
+Disadvantages of Multi-threading.
+*general: increased complexity
+*As lots of data are shared among thread it need to manage concurrency through mechanisms such as mutexes and condition variables
+*difficult to debug, result is sometimes unpredictable
+*potential deadlocks.
+
+DISCRIPTION ABOUT PROGRAMS:
+--------------------------
+simple_threaed.c: In this program a thread has been created using pthread_create(). thread function runs. main function 
+wait for thread_function to exit via thread_join() aftre thread_function exit. main function gets the thread exit status and then
+it also exists.
+
+thread_signal.c : in this pthread_kill() is used to kill the thread_func.thread function have its handler which 
+handled the interrupt run the signal handler and resume its execution for the signal for which it has handler.
+otherwise it kill the program.
+
+PROJECT:
+--------
+[server.c header.h color.h]
+In the server.c it creates thread one for each client:requesting and processing client.
+requesting client send the request and goes into pause.upon receiving the  request 
+processing client process it and kill the appropriate requesting using thread_id.
+upon receiving the kill signal requesting process comes out of pause and read the reseult.
+
